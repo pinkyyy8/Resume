@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume</title>
+  <style>
+    /* Google Fonts Import */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+    
+    /* Reset and base styles */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #6c63ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Container */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px 50px;
+    }
+    
+    /* Header/Nav */
+    header {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: auto;
+      padding: 15px 20px;
+    }
+    .logo {
+      font-weight: 600;
+      font-size: 1.4em;
+      color: #6c63ff;
+      letter-spacing: 2px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+    .nav-links a {
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 0.85em;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    .nav-links a:hover {
+      background-color: #6c63ff;
+      color: #fff;
+    }
+    
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 80px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 40px;
+    }
+    .hero-text {
+      flex: 1 1 300px;
+    }
+    .hero-text h1 {
+      font-size: 3em;
+      margin: 0 0 10px 0;
+      color: #222;
+    }
+    .hero-text h2 {
+      font-weight: 400;
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      color: #6c63ff;
+    }
+    .hero-text p {
+      font-size: 1.1em;
+      color: #555;
+      max-width: 480px;
+    }
+    .hero-photo {
+      flex: 0 0 200px;
+      margin-left: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(108,99,255,0.3);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .hero-photo img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .hero-photo:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Sections */
+    section {
+      background: white;
+      border-radius: 10px;
+      margin-top: 40px;
+      padding: 30px 40px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    section h3 {
+      font-size: 1.75em;
+      color: #6c63ff;
+      margin-bottom: 15px;
+      border-bottom: 3px solid #6c63ff;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    
+    /* About */
+    #about p {
+      font-size: 1.1em;
+      max-width: 700px;
+      color: #444;
+    }
+    
+    /* Skills and Hobbies */
+    #skills ul,
+    #hobbies ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    #skills li,
+    #hobbies li {
+      background: #e8e9ff;
+      color: #444;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 25px;
+      box-shadow: 0 4px 10px rgba(108, 99, 255, 0.15);
+      flex: 0 1 120px;
+      text-align: center;
+      font-size: 0.95em;
+      user-select: none;
+    }
+    
+    /* Experience & Education Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+      margin-top: 15px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 11px;
+      width: 4px;
+      height: 100%;
+      background: #6c63ff;
+      border-radius: 4px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 30px;
+      padding-left: 20px;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -19px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border: 4px solid #6c63ff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(108, 99, 255, 0.4);
+    }
+    .timeline-item h4 {
+      margin: 0 0 5px 0;
+      font-size: 1.2em;
+      color: #222;
+    }
+    .timeline-item span {
+      font-size: 0.9em;
+      font-weight: 600;
+      color: #6c63ff;
+      display: block;
+      margin-bottom: 8px;
+      user-select: none;
+    }
+    .timeline-item p {
+      margin: 0;
+      color: #444;
+    }
+    
+    /* Contact */
+    #contact p {
+      max-width: 600px;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      color: #444;
+    }
+    #contact a {
+      display: inline-block;
+      margin-top: 10px;
+      font-weight: 600;
+      color: #6c63ff;
+      border: 2px solid #6c63ff;
+      padding: 8px 18px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    #contact a:hover {
+      background: #6c63ff;
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 50px;
+      color: #aaa;
+      font-size: 0.9em;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-photo {
+        margin: 30px 0 0 0;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      #skills ul,
+      #hobbies ul {
+        justify-content: center;
+      }
+      section {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container" aria-label="Navigasi utama">
+      <div class="logo">Heny Melda Nafiah</div>
+      <div class="nav-links">
+        <a href="#about">Tentang Saya</a>
+        <a href="#skills">Keahlian</a>
+        <a href="#experience">Pengalaman</a>
+        <a href="#education">Pendidikan</a>
+        <a href="#hobbies">Hobi</a>
+        <a href="#contact">Kontak</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" role="main">
+    <section class="hero" aria-label="Perkenalan">
+      <div class="hero-text">
+        <h1>Heny Melda Nafiah</h1>
+        <h2>Pengembang Full Stack</h2>
+        <p>Apa aja bisa, soalnya banyak bisanya</p>
+      </div>
+      <div class="hero-photo" tabindex="0" role="img" aria-label="Photo of John Doe">
+        <img src="https://i.pinimg.com/736x/26/b0/b9/26b0b930c3eb350e6dcaad250ea78c28.jpg" alt="Portrait photo of John Doe" />
+      </div>
+    </section>
+
+    <section id="about" tabindex="0" aria-labelledby="about-heading">
+      <h3 id="about-heading">Tentang Saya</h3>
+      <p>Saya merupakan lulusan Sekolah Menengah Ilmu Pariwisata, lahir di Kota Tegal pada tanggal 12 Desember 2000 dan memiliki tinggi badan 160 cm dengan berat badan 55 kg. Termasuk orang yang senang dan mudah bersosialisasi, bertemu, bahkan bekerja sama dengan orang yang baru saya kenal. Saya pun dikenal sebagai pendengar yang baik sehingga mampu menangkap inti persoalan dan memberikan solusi yang tepat.</p>
+    </section>
+
+    <section id="skills" tabindex="0" aria-labelledby="skills-heading">
+      <h3 id="skills-heading">Keahlian</h3>
+      <ul>
+        <li>Microsoft Power Point</li>
+        <li>Microsoft Word</li>
+        <li>Microsoft Excel</li>
+        <li>Membaca Hangul</li>
+        <li>Edit Foto &amp; Video</li>
+        <!--<li>Git &amp; GitHub</li>-->
+        <li>Pemasaran Online</li>
+        <!--<li>Docker &amp; Kubernetes</li>-->
+      </ul>
+    </section>
+
+    <section id="experience" tabindex="0" aria-labelledby="experience-heading">
+      <h3 id="experience-heading">Pengalaman</h3>
+      <div class="timeline" role="list">
+        <div class="timeline-item" role="listitem">
+          <h4>Admin Ticketing</h4>
+          <span>PT. Wisata Untuk Semua | Mei 2019 - Maret 2020</span>
+          <p>
+            - Memperoses pemesanan tiket pesawat.<br>
+            - Mengurus reschedule atau reroute penerbangan.<br>
+            - Memproses pembatalan tiket pesawat dan melakukan refund sesuai sistem.<br>
+            - Melakukan reservasi manual dan computerized reservation.<br>
+            - Membuat jadwal perjalanan.<br>
+        </p>
+        </div>
+        <div class="timeline-item" role="listitem">
+          <h4>Crew Store</h4>
+          <span>PT. PrimaFood Internasional Indonesia | November 2020 - Januari 2022</span>
+          <p>
+            - Melayani pelanggan dan transaksi kasir.<br>
+            - Menjaga kebersihan area toko.<br>
+            - Penerimaan & pengelolaan barang.<br>
+            - Membuat laporan penjualan dan stock opname.<br>
+            - Delivery order dan canvassing.<br>
+          </p>
+        </div>
+        <div class="timeline-item" role="listitem">
+          <h4>Operator Produksi</h4>
+          <span>PT. Koza Presisi Indonesia | Januari 2022 - Mei 2023</span>
+          <p>
+            - Mengoperasikan mesin produksi.<br>
+            - Menjaga produktivitas produksi.<br>
+            - Memastikan produk sampai ke tahap selanjutnya.<br>
+            - Bekerja sesuai targer.<br>
+            - Membuat report produksi.<br>
+          </p>
+        </div>
+        <div class="timeline-item" role="listitem">
+          <h4>Waitress</h4>
+          <span>PT. Basuki Lima Selaras | Juli 2023 - Desember 2023</span>
+          <p>
+            - Melayani pelanggan.<br>
+            - Menangani komplain pelanggan.<br>
+            - Membersihkan area.<br>
+            - Mencatat pesanan dan memastikan ketepatan pesanan.<br>
+            - Stand by dan memperhatikan customer.<br>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" tabindex="0" aria-labelledby="education-heading">
+      <h3 id="education-heading">Pendidikan</h3>
+      <div class="timeline" role="list">
+        <div class="timeline-item" role="listitem">
+          <h4>Sekolah Dasar</h4>
+          <span>SDN Gandasari 1 | 2007 - 2013</span>
+          <!--<p>Lulus dengan predikat cum laude. Mata kuliah relevan meliputi Struktur Data, Algoritma, Sistem Basis Data, dan Pengembangan Web.</p>-->
+        </div>
+        <div class="timeline-item" role="listitem">
+          <h4>Sekolah Menengah Pertama</h4>
+          <span>SMP Negeri 08 Kota Tangerang | 2013 - 2017</span>
+          <!--<p>Program intensif selama 6 bulan yang mencakup teknologi front-end dan back-end termasuk React, Node.js, Express, dan basis data.</p>-->
+        </div>
+        <div class="timeline-item" role="listitem">
+          <h4>Sekolah Menengah Kejuruan</h4>
+          <span>SMK Gema Gawita Pariwisata | 2017 - 2019</span>
+          <!--<p>Workshop praktik yang fokus pada ES6+, pemrograman asinkron, dan praktik terbaik framework JavaScript modern.</p>-->
+        </div>
+      </div>
+    </section>
+
+    <section id="hobbies" tabindex="0" aria-labelledby="hobbies-heading">
+      <h3 id="hobbies-heading">Hobi</h3>
+      <ul>
+        <li>Berenang</li>
+        <li>Memasak</li>
+        <li>Mendengarkan Lagu</li>
+        <li>Menonton Film</li>
+        <!--<li>Memainkan Gitar</li>-->
+      </ul>
+    </section>
+
+    <section id="contact" tabindex="0" aria-labelledby="contact-heading">
+      <h3 id="contact-heading">Kontak</h3>
+      <p>Saya terbuka untuk berdiskusi mengenai proyek baru, kolaborasi, atau peluang kerja. Jangan ragu untuk menghubungi saya!</p>
+      <p>Email: <a href="mailto:henynafiah@gmail.com">Kirim Pesan</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener">linkedin</a></p>
+      <p>Instagram: <a href="https://www.instagram.com/henymell" target="_blank" rel="noopener">yodaa</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <!--<p>© 2024 John Doe. Semua hak dilindungi.</p>-->
+  </footer>
+
+  <script>
+    // Smooth scroll offset for fixed header
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').slice(1);
+        const targetSection = document.getElementById(targetId);
+        const headerOffset = document.querySelector('header').offsetHeight;
+        const elementPosition = targetSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset - 10;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
